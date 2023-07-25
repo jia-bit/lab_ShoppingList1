@@ -4,6 +4,9 @@
 
 #ifndef LAB_SHOPPINGLIST1_SUBJECT_H
 #define LAB_SHOPPINGLIST1_SUBJECT_H
+
+#include "Observer.h"
+
 class Subject{
 public:
     virtual void notify()=0;
