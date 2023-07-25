@@ -30,3 +30,20 @@ void UserView::Displayinlist() {
     std::cout<<"3. torna alla menu: "<<std::endl;
     std::cout<<"insesci il numero............."<<std::endl;
 }
+
+void UserView::showonelist(const std::string &name) {
+    lists->showonelist(name);
+}
+
+void UserView::insertnewlist(const ShoppingList &newlist) {
+    lists->insertShoppinglist(newlist);
+}
+
+void UserView::renamelistname(const std::string &newname, const std::string &origlname) {
+    lists->renamelist(newname, origlname);
+}
+
+void UserView::removeobject(const std::string &name, int pos) {
+    lists->removeobject(name, pos);
+}
+

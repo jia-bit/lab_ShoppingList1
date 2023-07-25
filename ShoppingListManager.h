@@ -24,6 +24,9 @@ public:
     int getlistnumber()const;
     void setlistnumber(int n);
 
+    void showonelist(const std::string& name);
+    void renamelist(const std::string& newname, const std::string& origilname);
+    void removeobject(const std::string& name, int pos);
 private:
     std::list<Observer*> observers;
     std::map<std::string, ShoppingList> lists;

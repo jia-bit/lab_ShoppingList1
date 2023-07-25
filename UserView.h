@@ -16,6 +16,11 @@ public:
     void printallLists();
     void Displayinlist();
 
+    void showonelist(const std::string& name);
+    void insertnewlist(const ShoppingList& newlist);
+    void renamelistname(const std::string& newname, const std::string& origlname);
+    void removeobject( const std::string& name, int pos);
+
 private:
     ShoppingListManager* lists;
 };

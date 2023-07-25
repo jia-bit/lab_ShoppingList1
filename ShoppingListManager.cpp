@@ -29,7 +29,6 @@ void ShoppingListManager::insertShoppinglist(const ShoppingList& newlist) {
     lists.insert(std::pair(newlist.getlistname(), newlist));
     setlistnumber(1);
     notify();
-    //printlists();
     std::cout<<"inserimento shopping list successo"<<std::endl;
 }
 
@@ -63,4 +62,41 @@ int ShoppingListManager::getlistnumber() const {
 
 void ShoppingListManager::setlistnumber(int n) {
     listnumber+=n;
+}
+
+void ShoppingListManager::showonelist(const std::string &name) {
+    for(auto itr:lists){
+        if(itr.first==name){
+            if(itr.second.gettotal()!=0) {
+                itr.second.printlist();
+            }else {
+                std::cout<<"non c' e' nessun oggetto"<<std::endl;
+            }
+        }else{
+            std::cout<<"lista non esiste!"<<std::endl;
+            std::cout<<"riinserisci il nome della lista: "<<std::endl;
+        }
+    }
+}
+
+void ShoppingListManager::renamelist(const std::string &newname, const std::string &origilname) {
+    for(auto itr:lists) {
+        if(newname==itr.first){
+            std::cout<<"nome della lista gia' esistente, riinserisci il nome: "<<std::endl;
+        }
+        if (itr.first == origilname) {
+            itr.second.renamelistname(newname);
+            std::cout<<"rinominata!"<<std::endl;
+        }else{
+            std::cout<<"rinominazione fallita!"<<std::endl;
+        }
+    }
+}
+
+void ShoppingListManager::removeobject(const std::string &name, int pos) {
+    for(auto itr:lists) {
+        if (itr.first == name) {
+            itr.second.removeobject(pos);
+        }
+    }
 }
