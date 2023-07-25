@@ -72,12 +72,15 @@ void ShoppingList::insertobject(const Object &value) {
 }
 
 void ShoppingList::removeobject(int pos) {
-    if(pos>=0&&pos<list.size()) {
-        list.erase(list.begin() + pos);
-        calcoltotal();
-        notify();
+    if(gettotal()!=0) {
+        if (pos >= 0 && pos < list.size()) {
+            list.erase(list.begin() + pos);
+            calcoltotal();
+            notify();
+        }
+    }else{
+        std::cout<<"nessun oggetto da cancellare"<<std::endl;
     }
-
 
 }
 
