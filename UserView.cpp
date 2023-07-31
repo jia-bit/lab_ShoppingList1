@@ -27,15 +27,16 @@ void UserView::Displayinlist() {
     std::cout<<"**********************************************"<<std::endl;
     std::cout<<"1. inserisce un nuovo oggetto"<<std::endl;
     std::cout<<"2. cancella un oggetto"<<std::endl;
-    std::cout<<"3. torna alla menu: "<<std::endl;
+    std::cout<<"3. modifica quantita' di oggetto"<<std::endl;
+    std::cout<<"4. torna alla menu: "<<std::endl;
     std::cout<<"insesci il numero............."<<std::endl;
 }
 
-void UserView::showonelist(const std::string &name) {
-    lists->showonelist(name);
+void UserView::showonelist(const ShoppingList* const list) {
+    lists->showonelist(list);
 }
 
-void UserView::insertnewlist(const ShoppingList &newlist) {
+void UserView::insertnewlist(ShoppingList* newlist) {
     lists->insertShoppinglist(newlist);
 }
 

@@ -32,12 +32,14 @@ public:
     void renamelistname(const std::string& name);
     void calcoltotal();
     void modifysingleobjectquantity(const float& goalq, int pos);
+    const ShoppingList* getlist()const;
 
 private:
     std::list<Observer*> observers;
     std::vector<Object> list;
     float total;
     std::string listname;
+
 };
 
 

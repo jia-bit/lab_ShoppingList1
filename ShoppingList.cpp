@@ -8,6 +8,7 @@
 ShoppingList::ShoppingList(const std::string& n){
     total=0;
     listname=n;
+
 }
 
 
@@ -67,6 +68,7 @@ void ShoppingList::printlist() {
 void ShoppingList::insertobject(const Object &value) {
     list.push_back(value);
     calcoltotal();
+
     notify();
     std::cout<<"inserimento oggetto successo"<<std::endl;
 }
@@ -76,6 +78,7 @@ void ShoppingList::removeobject(int pos) {
         if (pos >= 0 && pos < list.size()) {
             list.erase(list.begin() + pos);
             calcoltotal();
+
             notify();
         }
     }else{
@@ -83,6 +86,7 @@ void ShoppingList::removeobject(int pos) {
     }
 
 }
+
 
 ShoppingList::ShoppingList(const ShoppingList &orig) {
     total=orig.total;
@@ -140,3 +144,9 @@ ShoppingList::~ShoppingList() {
 void ShoppingList::renamelistname(const std::string &name) {
     this->listname=name;
 }
+
+const ShoppingList *ShoppingList::getlist() const {
+    return this;
+}
+
+

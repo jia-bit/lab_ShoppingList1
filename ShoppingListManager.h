@@ -6,7 +6,7 @@
 #define LAB_SHOPPINGLIST1_SHOPPINGLISTMANAGER_H
 
 
-#include <map>
+#include <vector>
 #include "Subject.h"
 #include "ShoppingList.h"
 
@@ -17,19 +17,24 @@ public:
     void subscribe(Observer* o) override;
     void unsubscribe(Observer* o) override;
 
-
-    void insertShoppinglist(const ShoppingList& newlist);
-    void deleteShoppinglist(const std::string& listname);
+    void insertShoppinglist(ShoppingList* newlist);
+    void deleteShoppinglist(int pos);
     void printlists();
     int getlistnumber()const;
     void setlistnumber(int n);
 
-    void showonelist(const std::string& name);
+    ShoppingList* creatlist(const std::string& name);
+    void showonelist(const ShoppingList * const list);
     void renamelist(const std::string& newname, const std::string& origilname);
+    void insertnewObject(const std::string& name, const Object& obj);
     void removeobject(const std::string& name, int pos);
+    void modifysingleobjectquantity(const std::string& name, const float& goalq, int pos);
+    void calcolatetotal(const std::string& name);
+    const ShoppingList* getlist(const std::string& name);
+    bool findlist(const std::string& name);
 private:
     std::list<Observer*> observers;
-    std::map<std::string, ShoppingList> lists;
+    std::vector< ShoppingList*> lists;
     int listnumber;
 };
 
