@@ -10,7 +10,7 @@
 
 class UserView {
 public:
-    UserView(ShoppingListManager* ls);
+    explicit UserView(ShoppingListManager* ls);
 
     void Menu();
     void printallLists();
