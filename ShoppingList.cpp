@@ -90,6 +90,7 @@ void ShoppingList::removeobject(int pos) {
 
 ShoppingList::ShoppingList(const ShoppingList &orig) {
     total=orig.total;
+    listname=orig.listname;
     if(!orig.list.empty()  && !orig.observers.empty()){
         list.resize(orig.list.size());
         for (const auto itr0:orig.list) {
@@ -116,7 +117,7 @@ ShoppingList &ShoppingList::operator=(const ShoppingList &right) {
         }
 
         total=right.total;
-
+        listname=right.listname;
         if(!right.list.empty()  && !right.observers.empty()){
             list.resize(right.list.size());
 
