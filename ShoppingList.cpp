@@ -11,7 +11,7 @@ ShoppingList::ShoppingList(const std::string& n){
 
 }
 
-
+ShoppingList::ShoppingList():total(0) {}
 
 void ShoppingList::notify() {
     for(auto &itr:observers)
@@ -53,14 +53,14 @@ void ShoppingList::modifysingleobjectquantity(const float& goalq, int pos) {
 }
 
 void ShoppingList::printlist() {
-    int i=1;
+    int i=0;
     for(const auto itr:list){
         do{
             std::cout << i << ". oggetto: " << itr.getname() << "    -tipo: " << itr.gettype()
                       << "   -prezzo unitario: " << itr.getunitprice() << "  - quantita': "
                       << itr.getquantity() << "   -prezzo: " << itr.getprice() << std::endl;
             i++;
-        }while(i<1);
+        }while(i<0);
     }
 }
 

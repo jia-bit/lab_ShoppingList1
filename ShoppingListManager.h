@@ -23,7 +23,6 @@ public:
     int getlistnumber()const;
     void setlistnumber(int n);
 
-    ShoppingList* creatlist(const std::string& name);
     void showonelist(const ShoppingList * const list);
     bool renamelist(const std::string& newname, const std::string& oldname);
     void insertnewObject(const std::string& name, const Object& obj);

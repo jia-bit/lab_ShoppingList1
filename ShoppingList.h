@@ -15,7 +15,7 @@
 class ShoppingList : public Subject{
 public:
     ShoppingList(const std::string& n);
-    ShoppingList(){}
+    ShoppingList();
     ~ShoppingList();
 
     ShoppingList(const ShoppingList& orig);
@@ -33,7 +33,6 @@ public:
     void calcoltotal();
     void modifysingleobjectquantity(const float& goalq, int pos);
     const ShoppingList* getlist()const;
-
 private:
     std::list<Observer*> observers;
     std::vector<Object> list;

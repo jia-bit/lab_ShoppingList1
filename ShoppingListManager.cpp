@@ -58,14 +58,14 @@ void ShoppingListManager::deleteShoppinglist(int pos) {
 }
 
 void ShoppingListManager::printlists() {
-    int i=1;
+    int i=0;
     if(getlistnumber()!=0) {
         std::cout<<"My all lists: "<<std::endl;
         for (const auto &itr: lists) {
             do {
                 std::cout << i << " . " << "List Name: " << itr->getlistname() <<"    -totale: "<<itr->gettotal()<<std::endl;
                 i++;
-            } while (i < 1);
+            } while (i < 0);
         }
     }else{
         std::cout<<"non c' e' nessuna lista"<<std::endl;
@@ -80,12 +80,6 @@ void ShoppingListManager::setlistnumber(int n) {
     listnumber+=n;
 }
 
-ShoppingList* ShoppingListManager::creatlist(const std::string& name)  {
-    auto newlist=new ShoppingList(name);
-    std::cout<<"nuova lista creata!"<<std::endl;
-    return newlist;
-
-}
 
 void ShoppingListManager::showonelist(const ShoppingList* const list) {
     for(auto &itr:lists){
@@ -172,17 +166,15 @@ bool ShoppingListManager::findlist(const std::string &name) {
 }
 
 void ShoppingListManager::copylist(const std::string &name) {
-    ShoppingList* copylist=new ShoppingList();
+    std::string Newname=name+"copied";
     for(auto &itr:lists){
         if(itr->getlistname()==name){
-            *copylist=*itr->getlist();
-            std::string Newname=name +"copied";
-            copylist->renamelistname(Newname);
-            insertShoppinglist(copylist);
+            ShoppingList copylist(*itr->getlist());
+            copylist.renamelistname(Newname);
+            insertShoppinglist(new ShoppingList(copylist));;
             notify();
             std::cout<<"lista copiata!"<<std::endl;
             break;
         }
     }
-    delete copylist;
 }
