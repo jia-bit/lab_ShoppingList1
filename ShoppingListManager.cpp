@@ -170,3 +170,19 @@ bool ShoppingListManager::findlist(const std::string &name) {
     }
     return false;
 }
+
+void ShoppingListManager::copylist(const std::string &name) {
+    ShoppingList* copylist=new ShoppingList();
+    for(auto &itr:lists){
+        if(itr->getlistname()==name){
+            *copylist=*itr->getlist();
+            std::string Newname=name +"copied";
+            copylist->renamelistname(Newname);
+            insertShoppinglist(copylist);
+            notify();
+            std::cout<<"lista copiata!"<<std::endl;
+            break;
+        }
+    }
+    delete copylist;
+}

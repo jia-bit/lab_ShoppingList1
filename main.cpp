@@ -151,6 +151,17 @@ int main() {
                 }
                 ob1.printalllists();
                 break;
+            case 6:
+                user.printallLists();
+                std::cout<<"inserisci il nome della lista da copiare: "<<std::endl;
+                std::cin>>listname;
+                while(!manager.findlist(listname)){
+                    std::cout<<"riinserisci il nome della lista da copiare: "<<std::endl;
+                    std::cin>>listname;
+                }
+                manager.copylist(listname);
+                ob1.printalllists();
+                break;
 
             default:
                 std::cout<<"numero non conosciuto"<<std::endl;

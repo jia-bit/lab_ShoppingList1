@@ -19,6 +19,7 @@ void UserView::Menu() {
     std::cout<<"3. crea una nuova lista"<<std::endl;
     std::cout<<"4. cancella la lista"<<std::endl;
     std::cout<<"5. rinomina la lista"<<std::endl;
+    std::cout<<"6. copia la lista"<<std::endl;
     std::cout<<"insesci il numero............."<<std::endl;
 }
 

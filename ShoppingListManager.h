@@ -32,6 +32,7 @@ public:
     void calcolatetotal(const std::string& name);
     const ShoppingList* getlist(const std::string& name);
     bool findlist(const std::string& name);
+    void copylist(const std::string& name);
 private:
     std::list<Observer*> observers;
     std::vector< ShoppingList*> lists;
