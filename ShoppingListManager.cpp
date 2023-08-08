@@ -96,21 +96,25 @@ void ShoppingListManager::showonelist(const ShoppingList* const list) {
 }
 
 
-void ShoppingListManager::renamelist(const std::string &newname, const std::string& origilname) {
-    for(auto &itr:lists) {
-        if (newname == itr->getlistname()) {
-            std::cout << "nome della lista gia' esistente!" << std::endl;
-            std::cout<<"rinominazione fallita!"<<std::endl;
+bool ShoppingListManager::renamelist(const std::string &newname, const std::string& oldname) {
+    bool oldNameFound = false;
+    for (auto &itr: lists) {
+        if (itr->getlistname() == oldname) {
+            oldNameFound=true;
+            if (itr->getlistname() == newname) {
+                std::cout << "nome gia' esistente!" << std::endl;
+                return false;
+            }else {
+                itr->renamelistname(newname);
+                std::cout << "rinominata!" << std::endl;
+                return true;
+            }
         }
     }
-    for(auto &itr:lists){
-        if (itr->getlistname() == origilname) {
-            itr->renamelistname(newname);
-            std::cout<<"rinominata!"<<std::endl;
-        }else{
-            std::cout<<"rinominazione fallita!"<<std::endl;
-            std::cout<<"nome della lista non esiste!"<<std::endl;
-        }
+
+    if(!oldNameFound){
+        std::cout << "Lista non esistente" << std::endl;
+        return false;
     }
 }
 

@@ -140,12 +140,16 @@ int main() {
                 user.printallLists();
                 break;
             case 5: //rinomina nome
+                user.printallLists();
+            loop2:
                 std::cout << "inserisci nome vecchio: " << std::endl;
                 std::cin >> oldname;
                 std::cout << "inserisci nome nuovo: " << std::endl;
                 std::cin>>newname;
-                user.renamelistname(newname, oldname);
-                user.printallLists();
+                if(!manager.renamelist(newname, oldname)){
+                    goto loop2;
+                }
+                ob1.printalllists();
                 break;
 
             default:
