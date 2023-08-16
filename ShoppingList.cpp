@@ -42,7 +42,8 @@ void ShoppingList::calcoltotal() {
 
 void ShoppingList::modifysingleobjectquantity(const float& goalq, int pos) {
     if(pos>=0) {
-        list.at(pos).setquantity(goalq);
+        list[pos].setquantity(goalq);
+        list[pos].setprice();
         calcoltotal();
         notify();
     }
@@ -53,14 +54,11 @@ void ShoppingList::modifysingleobjectquantity(const float& goalq, int pos) {
 }
 
 void ShoppingList::printlist() {
-    int i=0;
-    for(const auto itr:list){
-        do{
-            std::cout << i << ". oggetto: " << itr.getname() << "    -tipo: " << itr.gettype()
-                      << "   -prezzo unitario: " << itr.getunitprice() << "  - quantita': "
-                      << itr.getquantity() << "   -prezzo: " << itr.getprice() << std::endl;
-            i++;
-        }while(i<0);
+    for(int i=0; i<list.size(); i++){
+        std::cout << i << ". oggetto: " << list[i].getname() << "    -tipo: " << list[i].gettype()
+        << "   -prezzo unitario: " << list[i].getunitprice() << "  - quantita': "
+        << list[i].getquantity() << "   -prezzo: " << list[i].getprice() << std::endl;
+
     }
 }
 
@@ -68,7 +66,6 @@ void ShoppingList::printlist() {
 void ShoppingList::insertobject(const Object &value) {
     list.push_back(value);
     calcoltotal();
-
     notify();
     std::cout<<"inserimento oggetto successo"<<std::endl;
 }
@@ -78,7 +75,6 @@ void ShoppingList::removeobject(int pos) {
         if (pos >= 0 && pos < list.size()) {
             list.erase(list.begin() + pos);
             calcoltotal();
-
             notify();
         }
     }else{
