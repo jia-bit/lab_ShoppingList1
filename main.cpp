@@ -109,7 +109,7 @@ int main() {
                             user.showonelist(manager.getlist(listname));
                             goto loop1;
                         case 2: //cancella oggetti
-                            std::cout<<"inserisci posizione di oggetto da cancellare: "<<std::endl;
+                            std::cout<<"inserisci la posizione di oggetto da cancellare: "<<std::endl;
                             std::cin>>pos;
                             user.removeobject(listname,pos);
                             manager.calcolatetotal(listname);
@@ -134,8 +134,9 @@ int main() {
                 }
                 break;
             case 4://cancella lista
-                std::cout << "inserisci il nome della lista da cancellare: " << std::endl;
-                std::cin >> listname;
+                manager.printlists();
+                std::cout << "inserisci la posizione della lista da cancellare: " << std::endl;
+                std::cin >> pos;
                 manager.deleteShoppinglist(pos);
                 user.printallLists();
                 break;
@@ -151,7 +152,7 @@ int main() {
                 }
                 ob1.printalllists();
                 break;
-            case 6:
+            case 6: //copia la lista
                 user.printallLists();
                 std::cout<<"inserisci il nome della lista da copiare: "<<std::endl;
                 std::cin>>listname;
