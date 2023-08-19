@@ -11,6 +11,7 @@ Object::Object(const std::string &n, const std::string &t, float up, float q){
     price=up*q;
 }
 
+Object::Object():unitprice(0), quantity(0) {}
 
 
 float Object::getprice() const {
@@ -40,3 +41,8 @@ void Object::setprice() {
 std::string Object::gettype() const {
     return this->type;
 }
+
+void Object::setunitprice(const float &uq) {
+    this->unitprice=uq;
+}
+

@@ -11,7 +11,7 @@
 class Object {
 public:
     Object(const std::string& n, const std::string& t, float up, float q);
-    Object(){}
+    Object();
     ~Object(){}
 
     float getprice()const;
@@ -21,6 +21,7 @@ public:
     std::string getname()const;
     std::string gettype()const;
     void setquantity(const float& q);
+    void setunitprice(const float& uq);
 private:
     std::string name;
     std::string type;
