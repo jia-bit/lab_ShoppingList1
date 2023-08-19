@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.25)
 add_subdirectory(./lib/googletest)
 set(gtest_SOURCE_DIR ./lib/googletest)
+include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
 set(TEST_SOURCE_FILES runAllTest.cpp ObjectFixture.cpp ObjectTest.cpp ShoppingListFixture.cpp ShoppingListTest.cpp ShoppingListManagerFixture.cpp ShoppingListManagerTest.cpp)
 add_executable(runAllTests ${TEST_SOURCE_FILES})

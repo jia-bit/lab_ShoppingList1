@@ -11,7 +11,9 @@ Object::Object(const std::string &n, const std::string &t, float up, float q){
     price=up*q;
 }
 
-Object::Object():unitprice(0), quantity(0) {}
+Object::Object():unitprice(0), quantity(0) {
+    price=unitprice*quantity;
+}
 
 
 float Object::getprice() const {
