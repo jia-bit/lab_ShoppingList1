@@ -19,19 +19,19 @@ public:
 
     void insertShoppinglist(ShoppingList* newlist);
     void deleteShoppinglist(int pos);
-    void printlists();
-    int getlistnumber()const;
-    void setlistnumber(int n);
+    void printLists();
+    int getListNumber()const;
+    void setListNumber(int n);
 
-    void showonelist(const ShoppingList * const list);
-    bool renamelist(const std::string& newname, const std::string& oldname);
+    void showOneList(const std::string &name); //riceve il nome della lista
+    bool renameList(const std::string& newname, const std::string& oldname);
     void insertnewObject(const std::string& name, const Object& obj);
-    void removeobject(const std::string& name, int pos);
-    void modifysingleobjectquantity(const std::string& name, const float& goalq, int pos);
-    void calcolatetotal(const std::string& name);
-    const ShoppingList* getlist(const std::string& name);
-    bool findlist(const std::string& name);
-    void copylist(const std::string& name);
+    void removeObject(const std::string& name, int pos);
+    void modifyObjectQuantity(const std::string& name, int goalq, int pos);
+    const ShoppingList* getList(const std::string& name);
+    bool findList(const std::string& name);
+    void copyList(const std::string& name);
+    void setObjectbeBought(int pos, const std::string &name);
 private:
     std::list<Observer*> observers;
     std::vector< ShoppingList*> lists;

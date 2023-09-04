@@ -27,9 +27,9 @@ void ShoppingListManager::unsubscribe(Observer *o) {
 
 void ShoppingListManager::insertShoppinglist(ShoppingList *newlist) {
     bool listExists = false;
-    if(getlistnumber()!=0) {
+    if(getListNumber() != 0) {
         for (auto &itr: lists) {
-            if (itr->getlistname()== newlist->getlistname()) {
+            if (itr->getListName() == newlist->getListName()) {
                 listExists = true;
                 break;
             }
@@ -39,17 +39,17 @@ void ShoppingListManager::insertShoppinglist(ShoppingList *newlist) {
         std::cout << "lista gia' esistente" << std::endl;
     }else{
         lists.push_back(newlist);
-        setlistnumber(1);
+        setListNumber(1);
         notify();
         std::cout<<"inserimento shopping list successo"<<std::endl;
     }
 }
 
 void ShoppingListManager::deleteShoppinglist(int pos) {
-    if(getlistnumber()!=0 && pos >= 0 && pos < lists.size()) {
+    if(getListNumber() != 0 && pos >= 0 && pos < lists.size()) {
         delete lists[pos];
         lists.erase(lists.begin()+pos);
-        setlistnumber(-1);
+        setListNumber(-1);
         notify();
         std::cout<<"lista selezionata cancellata!"<<std::endl;
     }else {
@@ -57,45 +57,46 @@ void ShoppingListManager::deleteShoppinglist(int pos) {
     }
 }
 
-void ShoppingListManager::printlists() {
-    if(getlistnumber()!=0) {
+void ShoppingListManager::printLists() {
+    if(getListNumber() != 0) {
         std::cout<<"My all lists: "<<std::endl;
         for (int i=0; i<lists.size();i++) {
-            std::cout<<i<<". List Name: "<<lists[i]->getlistname()<<"   -total: "<<lists[i]->gettotal()<<std::endl;
+            std::cout << i << ". List Name: " << lists[i]->getListName() << "   -total: " << lists[i]->getTotal() << std::endl;
         }
     }else{
         std::cout<<"non c' e' nessuna lista"<<std::endl;
     }
 }
 
-int ShoppingListManager::getlistnumber() const {
+int ShoppingListManager::getListNumber() const {
     return this->listnumber;
 }
 
-void ShoppingListManager::setlistnumber(int n) {
+void ShoppingListManager::setListNumber(int n) {
     listnumber+=n;
 }
 
 
-void ShoppingListManager::showonelist(const ShoppingList* const list) {
-    for(auto &itr:lists){
-        if(itr->getlistname()==list->getlistname()) {
-            itr->printlist();
+void ShoppingListManager::showOneList(const std::string &name) {
+    for(auto &itr:lists) {
+        if (itr->getListName() == name) {
+            itr->printList();
+            break;
         }
     }
 }
 
 
-bool ShoppingListManager::renamelist(const std::string &newname, const std::string& oldname) {
+bool ShoppingListManager::renameList(const std::string &newname, const std::string& oldname) {
     bool oldNameFound = false;
     for (auto &itr: lists) {
-        if (itr->getlistname() == oldname) {
+        if (itr->getListName() == oldname) {
             oldNameFound=true;
-            if (itr->getlistname() == newname) {
+            if (itr->getListName() == newname) {
                 std::cout << "nome gia' esistente!" << std::endl;
                 return false;
             }else {
-                itr->renamelistname(newname);
+                itr->renameListName(newname);
                 std::cout << "rinominata!" << std::endl;
                 return true;
             }
@@ -112,65 +113,65 @@ bool ShoppingListManager::renamelist(const std::string &newname, const std::stri
 
 void ShoppingListManager::insertnewObject(const std::string &name,const Object& obj) {
     for(auto &itr:lists){
-        if(itr->getlistname()==name){
-            itr->insertobject(obj);
+        if(itr->getListName() == name){
+            itr->insertObject(obj);
         }else{
             std::cout<<"lista non riconosciuta"<<std::endl;
         }
     }
 }
 
-void ShoppingListManager::removeobject(const std::string& name, int pos) {
+void ShoppingListManager::removeObject(const std::string& name, int pos) {
     for(auto &itr:lists) {
-        if (itr->getlistname()== name) {
-            itr->removeobject(pos);
+        if (itr->getListName() == name) {
+            itr->removeObject(pos);
         }
     }
 }
 
-void ShoppingListManager::modifysingleobjectquantity(const std::string& name, const float &goalq, int pos) {
+void ShoppingListManager::modifyObjectQuantity(const std::string& name, int goalq, int pos) {
     for(auto &itr:lists) {
-        if (itr->getlistname()==name) {
-            itr->modifysingleobjectquantity(goalq, pos);
+        if (itr->getListName() == name) {
+            itr->modifyObjectQuantity(goalq, pos);
         }
     }
 }
 
-void ShoppingListManager::calcolatetotal(const std::string &name) {
-    for(auto &itr:lists){
-        if(itr->getlistname()==name){
-            itr->calcoltotal();
-        }
-    }
-}
-
-const ShoppingList *ShoppingListManager::getlist(const std::string &name){
+const ShoppingList *ShoppingListManager::getList(const std::string &name){
     for(const auto &itr:lists){
-        if(itr->getlistname()==name){
-            return itr->getlist();
+        if(itr->getListName() == name){
+            return itr->getList();
         }
     }
 }
 
-bool ShoppingListManager::findlist(const std::string &name) {
+bool ShoppingListManager::findList(const std::string &name) {
     for(const auto itr:lists){
-        if(itr->getlistname()==name){
+        if(itr->getListName() == name){
             return true;
         }
     }
     return false;
 }
 
-void ShoppingListManager::copylist(const std::string &name) {
+void ShoppingListManager::copyList(const std::string &name) {
     std::string Newname=name+"copied";
     for(auto &itr:lists){
-        if(itr->getlistname()==name){
-            ShoppingList copylist(*itr->getlist());
-            copylist.renamelistname(Newname);
+        if(itr->getListName() == name){
+            ShoppingList copylist(*itr->getList());
+            copylist.renameListName(Newname);
             insertShoppinglist(new ShoppingList(copylist));;
             notify();
             std::cout<<"lista copiata!"<<std::endl;
             break;
+        }
+    }
+}
+
+void ShoppingListManager::setObjectbeBought(int pos, const std::string &name) {
+    for(auto &itr:lists){
+        if(itr->getListName()==name){
+            itr->setObjectbeBought(pos);
         }
     }
 }
