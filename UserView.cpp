@@ -7,9 +7,6 @@
 
 UserView::UserView(ShoppingListManager *ls): lists(ls) {}
 
-void UserView::printallLists() {
-    lists->printlists();
-}
 
 void UserView::Menu() {
     std::cout<<"*****************************"<<std::endl;
@@ -29,23 +26,14 @@ void UserView::Displayinlist() {
     std::cout<<"1. inserisce un nuovo oggetto"<<std::endl;
     std::cout<<"2. cancella un oggetto"<<std::endl;
     std::cout<<"3. modifica quantita' di oggetto"<<std::endl;
-    std::cout<<"4. torna alla menu: "<<std::endl;
+    std::cout<<"4. segna oggetto comprato"<<std::endl;
+    std::cout<<"5. torna alla menu: "<<std::endl;
     std::cout<<"insesci il numero............."<<std::endl;
 }
 
-void UserView::showonelist(const ShoppingList* const list) {
-    lists->showonelist(list);
-}
 
 void UserView::insertnewlist(ShoppingList* newlist) {
     lists->insertShoppinglist(newlist);
 }
 
-void UserView::renamelistname(const std::string &newname, const std::string &origlname) {
-    lists->renamelist(newname, origlname);
-}
-
-void UserView::removeobject(const std::string &name, int pos) {
-    lists->removeobject(name, pos);
-}
 

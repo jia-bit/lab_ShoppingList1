@@ -10,12 +10,12 @@ ListNumberObserver::ListNumberObserver(ShoppingListManager *s) : subject(s), lis
 }
 
 void ListNumberObserver::update() {
-    listnumber=subject->getlistnumber();
+    listnumber= subject->getListNumber();
 }
 
 void ListNumberObserver::printalllists() {
     update();
     std::cout<<"printing my all lists"<<std::endl;
-    subject->printlists();
+    subject->printLists();
     std::cout<<"ci sono "<<listnumber<<" liste."<<std::endl;
 }

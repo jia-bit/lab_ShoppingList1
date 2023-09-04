@@ -30,7 +30,7 @@ int main() {
                 std::cin >> newlistName;
                 newlist=new ShoppingList(newlistName);
                 std::cout<<std::endl;
-                user.insertnewlist(newlist);
+                manager.insertShoppinglist(newlist);
             loop:
                 returnmenu=false;
                 user.Displayinlist();
@@ -47,30 +47,36 @@ int main() {
                             std::cout << "inserisci tipo: " << std::endl;
                             std::cin >> Type;
                             obj=new Object(NameObj, Type, UnitPrice, Quantity);
-                            newlist->insertobject(*obj);
-                            newlist->calcoltotal();
-                            newlist->printlist();
-                            std::cout<<"totale di "<<newlist->getlistname()<<" : "<<newlist->gettotal()<<std::endl;
+                            newlist->insertObject(*obj);
+                            newlist->calculateTotal();
+                            newlist->printList();
+                            std::cout << "totale di " << newlist->getListName() << " : " << newlist->getTotal() << std::endl;
                             goto loop;
                         case 2:
                             std::cout<<"inserisci posizione di oggetto da cancellare: "<<std::endl;
                             std::cin>>pos;
-                            manager.removeobject(newlistName, pos);
-                            newlist->calcoltotal();
-                            newlist->printlist();
-                            std::cout<<"total di "<<newlist->getlistname()<<" : "<<newlist->gettotal()<<std::endl;
+                            manager.removeObject(newlistName, pos);
+                            newlist->calculateTotal();
+                            newlist->printList();
+                            std::cout << "total di " << newlist->getListName() << " : " << newlist->getTotal() << std::endl;
                             goto loop;
                         case 3:
                             std::cout<<"inserisci nuova quantita': "<<std::endl;
                             std::cin>>goalquantity;
                             std::cout<<"inserisci posizione di oggetto: "<<std::endl;
                             std::cin>>pos;
-                            newlist->modifysingleobjectquantity(goalquantity, pos);
-                            newlist->calcoltotal();
-                            newlist->printlist();
-                            std::cout<<"total: "<<newlist->gettotal()<<std::endl;
+                            newlist->modifyObjectQuantity(goalquantity, pos);
+                            newlist->calculateTotal();
+                            newlist->printList();
+                            std::cout << "total: " << newlist->getTotal() << std::endl;
                             goto loop;
                         case 4:
+                            newlist->printList();
+                            std::cout<<"inserisci posizione di oggetto: "<<std::endl;
+                            std::cin>>pos;
+                            newlist->setObjectbeBought(pos);
+                            break;
+                        case 5:
                             returnmenu=true;
                             break;
                         default:
@@ -83,11 +89,11 @@ int main() {
             case 3: //mostra lista
                 std::cout << "inserisci il nome della lista da mostrare: " << std::endl;
                 std::cin >> listname;
-                while(!manager.findlist(listname)){
+                while(!manager.findList(listname)){
                 std::cout << "riinserisci il nome della lista da mostrare: " << std::endl;
                 std::cin >> listname;
                 }
-                user.showonelist(manager.getlist(listname));
+                manager.showOneList(listname);
             loop1:
                 returnmenu=false;
                 user.Displayinlist();
@@ -105,26 +111,30 @@ int main() {
                             std::cin >> Type;
                             obj=new Object(NameObj, Type, UnitPrice, Quantity);
                             manager.insertnewObject(listname, *obj);
-                            manager.calcolatetotal(listname);
-                            user.showonelist(manager.getlist(listname));
+                            manager.showOneList(listname);
                             goto loop1;
                         case 2: //cancella oggetti
                             std::cout<<"inserisci la posizione di oggetto da cancellare: "<<std::endl;
                             std::cin>>pos;
                             user.removeobject(listname,pos);
-                            manager.calcolatetotal(listname);
-                            user.showonelist(manager.getlist(listname));
+                            manager.showOneList(listname);
+                            //manager.calculateTotal(listname);
                             goto loop1;
                         case 3: //modifica quantita'
                             std::cout<<"inserisci nuova quantita': "<<std::endl;
                             std::cin>>goalquantity;
                             std::cout<<"inserisci posizione di oggetto: "<<std::endl;
                             std::cin>>pos;
-                            manager.modifysingleobjectquantity(listname,goalquantity, pos);
-                            manager.calcolatetotal(listname);
-                            user.showonelist(manager.getlist(listname));
+                            manager.modifyObjectQuantity(listname, goalquantity, pos);
+                            manager.showOneList(listname);
                             goto loop;
                         case 4:
+                            std::cout<<"inserisci posizione di oggetto: "<<std::endl;
+                            std::cin>>pos;
+                            manager.setObjectbeBought(pos, listname);
+                            manager.showOneList(listname);
+                            break;
+                        case 5:
                             returnmenu=true;
                             break;
                         default:
@@ -134,33 +144,33 @@ int main() {
                 }
                 break;
             case 4://cancella lista
-                manager.printlists();
+                manager.printLists();
                 std::cout << "inserisci la posizione della lista da cancellare: " << std::endl;
                 std::cin >> pos;
                 manager.deleteShoppinglist(pos);
-                user.printallLists();
+                manager.printLists();
                 break;
             case 5: //rinomina nome
-                user.printallLists();
+                manager.printLists();
             loop2:
                 std::cout << "inserisci nome vecchio: " << std::endl;
                 std::cin >> oldname;
                 std::cout << "inserisci nome nuovo: " << std::endl;
                 std::cin>>newname;
-                if(!manager.renamelist(newname, oldname)){
+                if(!manager.renameList(newname, oldname)){
                     goto loop2;
                 }
                 ob1.printalllists();
                 break;
             case 6: //copia la lista
-                user.printallLists();
+                manager.printLists();
                 std::cout<<"inserisci il nome della lista da copiare: "<<std::endl;
                 std::cin>>listname;
-                while(!manager.findlist(listname)){
+                while(!manager.findList(listname)){
                     std::cout<<"riinserisci il nome della lista da copiare: "<<std::endl;
                     std::cin>>listname;
                 }
-                manager.copylist(listname);
+                manager.copyList(listname);
                 ob1.printalllists();
                 break;
 
