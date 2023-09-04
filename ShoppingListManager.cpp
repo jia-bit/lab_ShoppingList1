@@ -137,14 +137,6 @@ void ShoppingListManager::modifyObjectQuantity(const std::string& name, int goal
     }
 }
 
-const ShoppingList *ShoppingListManager::getList(const std::string &name){
-    for(const auto &itr:lists){
-        if(itr->getListName() == name){
-            return itr->getList();
-        }
-    }
-}
-
 bool ShoppingListManager::findList(const std::string &name) {
     for(const auto itr:lists){
         if(itr->getListName() == name){

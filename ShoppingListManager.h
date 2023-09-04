@@ -28,7 +28,6 @@ public:
     void insertnewObject(const std::string& name, const Object& obj);
     void removeObject(const std::string& name, int pos);
     void modifyObjectQuantity(const std::string& name, int goalq, int pos);
-    const ShoppingList* getList(const std::string& name);
     bool findList(const std::string& name);
     void copyList(const std::string& name);
     void setObjectbeBought(int pos, const std::string &name);
