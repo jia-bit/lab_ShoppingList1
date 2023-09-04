@@ -8,15 +8,17 @@
 class ObjectSuite: public::testing::Test{
 protected:
     virtual void SetUp(){
-        ob.setunitprice(6);
-        ob.setquantity(10);
+        ob.setUnitPrice(6);
+        ob.setQuantity(10);
+        ob.setbeBought(true);
     }
     Object ob;
 };
 
 TEST_F(ObjectSuite, TestPrice){
-    ASSERT_EQ(6, ob.getunitprice());
-    ASSERT_EQ(10, ob.getquantity());
-    ob.setprice();
-    ASSERT_EQ(60, ob.getprice());
+    ASSERT_EQ(6, ob.getUnitPrice());
+    ASSERT_EQ(10, ob.getQuantity());
+    ob.setPrice();
+    ASSERT_EQ(60, ob.getPrice());
+    ASSERT_TRUE(ob.getbeBought());
 }

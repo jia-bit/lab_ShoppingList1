@@ -10,15 +10,15 @@ protected:
     ShoppingList list;
     virtual void SetUp(){
         Object ob1("birre", "alcool", 1.47, 10);
-        Object ob2("pane", "cereali", 5.31, 0.5);
+        Object ob2("pane", "cereali", 2.31, 1);
 
-        list.insertobject(ob1);
-        list.insertobject(ob2);
+        list.insertObject(ob1);
+        list.insertObject(ob2);
     }
 
 
 };
 
 TEST_F(ShoppingListSuite, TestTotal){
-    ASSERT_NEAR(17.36, list.gettotal(), 0.01);
+    ASSERT_NEAR(17.01, list.getTotal(), 0.01);
 }

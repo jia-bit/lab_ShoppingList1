@@ -8,7 +8,7 @@
 
 TEST(ShoppingListManager, DefaultConstructor){
     ShoppingListManager s;
-    ASSERT_EQ(0, s.getlistnumber());
+    ASSERT_EQ(0, s.getListNumber());
 }
 
 TEST(ShoppingListManager, Test){
@@ -18,12 +18,12 @@ TEST(ShoppingListManager, Test){
 
     s.insertShoppinglist(&list1);
     s.insertShoppinglist(&list2);
-    ASSERT_EQ(2, s.getlistnumber());
+    ASSERT_EQ(2, s.getListNumber());
 
-    s.copylist("first");
-    ASSERT_EQ(3, s.getlistnumber());
+    s.copyList("first");
+    ASSERT_EQ(3, s.getListNumber());
 
     s.deleteShoppinglist(2);
-    ASSERT_EQ(2, s.getlistnumber());
-    ASSERT_TRUE(true==s.findlist("second"));
+    ASSERT_EQ(2, s.getListNumber());
+    ASSERT_TRUE(true== s.findList("second"));
 }

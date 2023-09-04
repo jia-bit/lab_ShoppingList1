@@ -7,23 +7,27 @@
 
 TEST(ShoppingList, DefaultConstructor){
     ShoppingList list;
-    ASSERT_EQ(0, list.gettotal());
+    ASSERT_EQ(0, list.getTotal());
 }
 
 TEST(ShoppingList, TestQuantityTotal){
     ShoppingList list;
     Object ob1("birre", "alcool", 1.47, 10);
-    Object ob2("pane", "cereali", 5.31, 0.5);
+    Object ob2("pane", "cereali", 2.31, 1);
 
-    list.insertobject(ob1);
-    list.insertobject(ob2);
-    ASSERT_NEAR(17.36, list.gettotal(), 0.01);
+    list.insertObject(ob1);
+    list.insertObject(ob2);
+    ASSERT_NEAR(17.01, list.getTotal(), 0.01);
+    ASSERT_EQ(0, list.getnumberBoughtObject());
 
-    list.modifysingleobjectquantity(5, 0);
-    ASSERT_NEAR(10.01, list.gettotal(), 0.01);
+    list.modifyObjectQuantity(5, 0);
+    ASSERT_NEAR(9.66, list.getTotal(), 0.01);
 
-    list.removeobject(0);
-    ASSERT_NEAR(2.66, list.gettotal(), 0.01);
+    list.removeObject(0);
+    ASSERT_NEAR(2.31, list.getTotal(), 0.01);
+
+    list.setObjectbeBought(0);
+    ASSERT_EQ(1, list.getnumberBoughtObject());
 }
 
 

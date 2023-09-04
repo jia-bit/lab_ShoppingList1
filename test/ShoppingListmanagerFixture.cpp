@@ -15,11 +15,11 @@ protected:
 
         s.insertShoppinglist(&list1);
         s.insertShoppinglist(&list2);
-        s.copylist("first");
+        s.copyList("first");
     }
 
 };
 
 TEST_F(ShoppingListManagerSuite, TestManager){
-    ASSERT_EQ(3, s.getlistnumber());
+    ASSERT_EQ(3, s.getListNumber());
 }

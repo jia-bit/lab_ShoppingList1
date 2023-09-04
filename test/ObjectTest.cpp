@@ -7,15 +7,20 @@
 
 TEST(Object, DefaultConstructor){
     Object ob;
-    ASSERT_EQ(0, ob.getunitprice());
-    ASSERT_EQ(0, ob.getquantity());
-    ASSERT_EQ(0, ob.getprice());
+    ASSERT_EQ(0, ob.getUnitPrice());
+    ASSERT_EQ(0, ob.getQuantity());
+    ASSERT_EQ(0, ob.getPrice());
+    ASSERT_FALSE(ob.getbeBought());
 }
 
 TEST(Object, TestPrice){
     Object ob;
-    ob.setunitprice(0.6);
-    ob.setquantity(10);
-    ob.setprice();
-    ASSERT_EQ(6, ob.getprice());
+    ob.setUnitPrice(0.6);
+    ob.setQuantity(10);
+    ob.setPrice();
+    ASSERT_EQ(6, ob.getPrice());
+    ASSERT_FALSE(ob.getbeBought());
+
+    ob.setbeBought(true);
+    ASSERT_TRUE(ob.getbeBought());
 }
