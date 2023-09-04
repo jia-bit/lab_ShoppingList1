@@ -3,6 +3,7 @@
 //
 
 #include <iostream>
+#include <cmath>
 #include "ShoppingList.h"
 
 ShoppingList::ShoppingList(const std::string& n){
@@ -26,59 +27,62 @@ void ShoppingList::unsubscribe(Observer *o) {
     observers.remove(o);
 }
 
-float ShoppingList::gettotal() const {
+float ShoppingList::getTotal() const {
     return this->total;
 }
 
-void ShoppingList::calcoltotal() {
+void ShoppingList::calculateTotal() {
     float result=0;
-    for(auto itr:list){
-        result=itr.getunitprice()*itr.getquantity()+result;
+    for(auto &itr:list){
+        if(!itr.getbeBought()) {
+            result = itr.getUnitPrice() * itr.getQuantity() + result;
+        }
     }
+    result = std::round(result * 100) / 100;
     this->total=result;
 }
 
 
 
-void ShoppingList::modifysingleobjectquantity(const float& goalq, int pos) {
+void ShoppingList::modifyObjectQuantity(int goalq, int pos) {
     if(pos>=0) {
-        list[pos].setquantity(goalq);
-        list[pos].setprice();
-        calcoltotal();
+        list[pos].setQuantity(goalq);
+        list[pos].setPrice();
+        calculateTotal();
         notify();
     }
     if(goalq==0){
-        removeobject(pos);
-        calcoltotal();
+        removeObject(pos);
+        calculateTotal();
     }
 }
 
-void ShoppingList::printlist() {
+void ShoppingList::printList() {
     for(int i=0; i<list.size(); i++){
-        std::cout << i << ". oggetto: " << list[i].getname() << "    -tipo: " << list[i].gettype()
-        << "   -prezzo unitario: " << list[i].getunitprice() << "  - quantita': "
-        << list[i].getquantity() << "   -prezzo: " << list[i].getprice() << std::endl;
+        std::cout << i << ". oggetto: " << list[i].getName() << "    -tipo: " << list[i].getType()
+                  << "   -prezzo unitario: " << list[i].getUnitPrice() << "  - quantita': "
+                  << list[i].getQuantity() << "   -prezzo: " << list[i].getPrice() << std::endl;
 
     }
 }
 
 
-void ShoppingList::insertobject(const Object &value) {
+void ShoppingList::insertObject(const Object &value) {
     list.push_back(value);
-    calcoltotal();
+    calculateTotal();
     notify();
     std::cout<<"inserimento oggetto successo"<<std::endl;
 }
 
-void ShoppingList::removeobject(int pos) {
-    if(gettotal()!=0) {
+void ShoppingList::removeObject(int pos) {
+    if(getTotal() != 0) {
         if (pos >= 0 && pos < list.size()) {
             list.erase(list.begin() + pos);
-            calcoltotal();
+            calculateTotal();
             notify();
         }
     }else{
-        std::cout<<"nessun oggetto da cancellare"<<std::endl;
+        std::cout<<"nessun oggetto da cancellare"<<std::endl; //togliere
     }
 
 }
@@ -130,7 +134,7 @@ ShoppingList &ShoppingList::operator=(const ShoppingList &right) {
     return *this;
 }
 
-std::string ShoppingList::getlistname() const {
+std::string ShoppingList::getListName(){
     return this->listname;
 }
 
@@ -138,12 +142,32 @@ ShoppingList::~ShoppingList() {
     list.clear();
 }
 
-void ShoppingList::renamelistname(const std::string &name) {
+void ShoppingList::renameListName(const std::string &name) {
     this->listname=name;
 }
 
-const ShoppingList *ShoppingList::getlist() const {
+const ShoppingList *ShoppingList::getList() const {
     return this;
+}
+
+int ShoppingList::getnumberBoughtObject() {
+    int count=0;
+    for(auto &itr:list){
+        if(itr.getbeBought()){
+            count++;
+        }
+    }
+    return count;
+}
+
+void ShoppingList::setObjectbeBought(int pos) {
+    if(pos>=0 && pos<list.size()) {
+        if(!list[pos].getbeBought()){
+            list[pos].setbeBought(true);
+        }else{
+            list[pos].setbeBought(false);
+        }
+    }
 }
 
 

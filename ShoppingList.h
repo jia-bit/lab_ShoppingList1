@@ -16,7 +16,7 @@ class ShoppingList : public Subject{
 public:
     ShoppingList(const std::string& n);
     ShoppingList();
-    ~ShoppingList();
+    ~ShoppingList() override;
 
     ShoppingList(const ShoppingList& orig);
     void notify() override;
@@ -24,21 +24,22 @@ public:
     void unsubscribe(Observer *o) override;
 
     ShoppingList& operator=(const ShoppingList& right);
-    void insertobject(const Object& value);
-    void removeobject(int pos);
-    void printlist();
-    float gettotal()const;
-    std::string getlistname() const;
-    void renamelistname(const std::string& name);
-    void calcoltotal();
-    void modifysingleobjectquantity(const float& goalq, int pos);
-    const ShoppingList* getlist()const;
+    void insertObject(const Object& value);
+    void removeObject(int pos);
+    void printList();
+    float getTotal()const;
+    std::string getListName();
+    void renameListName(const std::string& name);
+    void calculateTotal();
+    void modifyObjectQuantity(int goalq, int pos);
+    const ShoppingList* getList()const;
+    int getnumberBoughtObject();
+    void setObjectbeBought(int pos);
 private:
     std::list<Observer*> observers;
     std::vector<Object> list;
     float total;
     std::string listname;
-
 };
 
 
