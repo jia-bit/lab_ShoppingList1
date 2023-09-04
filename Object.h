@@ -12,22 +12,24 @@ class Object {
 public:
     Object(const std::string& n, const std::string& t, float up, float q);
     Object();
-    ~Object(){}
 
-    float getprice()const;
-    void setprice();
-    float getunitprice() const;
-    float getquantity()const;
-    std::string getname()const;
-    std::string gettype()const;
-    void setquantity(const float& q);
-    void setunitprice(const float& uq);
+    float getPrice()const;
+    void setPrice();
+    float getUnitPrice() const;
+    int getQuantity()const;
+    std::string getName()const;
+    std::string getType()const;
+    void setQuantity(const int& q);
+    void setUnitPrice(const float& uq);
+    void setbeBought(bool bebought);
+    bool getbeBought();
 private:
-    std::string name;
-    std::string type;
-    float unitprice;
-    float quantity;
-    float price;
+    std::string Name;
+    std::string Type;
+    float UnitPrice;
+    int Quantity;
+    float Price;
+    bool beBought;
 };
 
 

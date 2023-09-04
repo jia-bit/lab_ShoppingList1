@@ -4,47 +4,56 @@
 
 #include "Object.h"
 Object::Object(const std::string &n, const std::string &t, float up, float q){
-    name=n;
-    type=t;
-    unitprice=up;
-    quantity=q;
-    price=up*q;
+    Name=n;
+    Type=t;
+    UnitPrice=up;
+    Quantity=q;
+    Price=up*q;
+    beBought=false;
 }
 
-Object::Object():unitprice(0), quantity(0) {
-    price=unitprice*quantity;
+Object::Object():UnitPrice(0), Quantity(0), beBought(false) {
+    Price=UnitPrice*Quantity;
 }
 
 
-float Object::getprice() const {
-    return this->price;
+float Object::getPrice() const {
+    return this->Price;
 }
 
-void Object::setquantity(const float &q) {
-    quantity=q;
+void Object::setQuantity(const int &q) {
+    Quantity=q;
 }
 
-std::string Object::getname() const {
-    return this->name;
+std::string Object::getName() const {
+    return this->Name;
 }
 
-float Object::getquantity() const {
-    return this->quantity;
+int Object::getQuantity() const {
+    return this->Quantity;
 }
 
-float Object::getunitprice() const {
-    return this->unitprice;
+float Object::getUnitPrice() const {
+    return this->UnitPrice;
 }
 
-void Object::setprice() {
-    price=unitprice*quantity;
+void Object::setPrice() {
+    Price=UnitPrice*Quantity;
 }
 
-std::string Object::gettype() const {
-    return this->type;
+std::string Object::getType() const {
+    return this->Type;
 }
 
-void Object::setunitprice(const float &uq) {
-    this->unitprice=uq;
+void Object::setUnitPrice(const float &uq) {
+    this->UnitPrice=uq;
+}
+
+void Object::setbeBought(bool bebought) {
+    this->beBought=bebought;
+}
+
+bool Object::getbeBought() {
+    return beBought;
 }
 
