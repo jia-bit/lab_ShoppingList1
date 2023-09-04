@@ -13,7 +13,6 @@ class ShoppingListObserver: public Observer { //osserve totale di una sola lista
 public:
     ShoppingListObserver(ShoppingList* s);
     void update() override;
-    void printalist();
     ~ShoppingListObserver() override;
 
 private:

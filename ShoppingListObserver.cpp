@@ -10,16 +10,10 @@ ShoppingListObserver::ShoppingListObserver(ShoppingList *s) : subject(s), total(
 }
 
 void ShoppingListObserver::update() {
-    subject->calcoltotal();
-    total=subject->gettotal();
+    subject->calculateTotal();
+    total= subject->getTotal();
 }
 
-void ShoppingListObserver::printalist() {
-    update();
-    std::cout<<"Printing list: "<<subject->getlistname()<<std::endl;
-    subject->printlist();
-    std::cout<<"Totale della lista e': "<<total<<std::endl;
-}
 
 ShoppingListObserver::~ShoppingListObserver() {
     subject->unsubscribe(this);
