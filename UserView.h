@@ -15,9 +15,6 @@ public:
     void Menu();
     void Displayinlist();
 
-    void insertnewlist(ShoppingList* newlist);
-    void removeobject( const std::string& name, int pos);
-
 private:
     ShoppingListManager* lists;
 };

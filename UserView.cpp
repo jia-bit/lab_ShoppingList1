@@ -32,8 +32,3 @@ void UserView::Displayinlist() {
 }
 
 
-void UserView::insertnewlist(ShoppingList* newlist) {
-    lists->insertShoppinglist(newlist);
-}
-
-
