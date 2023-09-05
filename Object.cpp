@@ -3,7 +3,7 @@
 //
 
 #include "Object.h"
-Object::Object(const std::string &n, const std::string &t, float up, float q){
+Object::Object(const std::string &n, const std::string &t, float up, int q){
     Name=n;
     Type=t;
     UnitPrice=up;
@@ -15,7 +15,6 @@ Object::Object(const std::string &n, const std::string &t, float up, float q){
 Object::Object():UnitPrice(0), Quantity(0), beBought(false) {
     Price=UnitPrice*Quantity;
 }
-
 
 float Object::getPrice() const {
     return this->Price;
@@ -53,7 +52,7 @@ void Object::setbeBought(bool bebought) {
     this->beBought=bebought;
 }
 
-bool Object::getbeBought() {
+bool Object::getbeBought() const {
     return beBought;
 }
 

@@ -9,9 +9,9 @@ int main() {
     ShoppingListManager manager;
     UserView user(&manager);
 
-    int c, f, pos;
+    int c, f, pos, Quantity, goalquantity;
     std::string newlistName, listname, oldname, newname, NameObj, Type;
-    float UnitPrice, Quantity, goalquantity;
+    float UnitPrice;
     bool returnmenu;
 
     Object* obj;
@@ -116,7 +116,7 @@ int main() {
                         case 2: //cancella oggetti
                             std::cout<<"inserisci la posizione di oggetto da cancellare: "<<std::endl;
                             std::cin>>pos;
-                            user.removeobject(listname,pos);
+                            manager.removeObject(listname,pos);
                             manager.showOneList(listname);
                             //manager.calculateTotal(listname);
                             goto loop1;

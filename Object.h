@@ -10,9 +10,8 @@
 
 class Object {
 public:
-    Object(const std::string& n, const std::string& t, float up, float q);
+    Object(const std::string& n, const std::string& t, float up, int q);
     Object();
-
     float getPrice()const;
     void setPrice();
     float getUnitPrice() const;
@@ -22,7 +21,7 @@ public:
     void setQuantity(const int& q);
     void setUnitPrice(const float& uq);
     void setbeBought(bool bebought);
-    bool getbeBought();
+    bool getbeBought() const;
 private:
     std::string Name;
     std::string Type;
