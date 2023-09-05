@@ -35,7 +35,7 @@ void ShoppingList::calculateTotal() {
     float result=0;
     for(auto &itr:list){
         if(!itr.getbeBought()) {
-            result = itr.getUnitPrice() * itr.getQuantity() + result;
+            result = static_cast<float>(itr.getUnitPrice() * itr.getQuantity() + result);
         }
     }
     result = std::round(result * 100) / 100;
@@ -85,53 +85,6 @@ void ShoppingList::removeObject(int pos) {
         std::cout<<"nessun oggetto da cancellare"<<std::endl; //togliere
     }
 
-}
-
-
-ShoppingList::ShoppingList(const ShoppingList &orig) {
-    total=orig.total;
-    listname=orig.listname;
-    if(!orig.list.empty()  && !orig.observers.empty()){
-        list.resize(orig.list.size());
-        for (const auto itr0:orig.list) {
-            list.push_back(itr0);
-        }
-
-
-        for(const auto &itr: orig.observers){
-            observers.push_back(itr);
-        }
-
-    }else{
-        list.clear();
-
-        observers.clear();
-    }
-}
-
-ShoppingList &ShoppingList::operator=(const ShoppingList &right) {
-    if(this!=&right){
-        if(!list.empty() || !observers.empty()){
-            list.clear();
-            observers.clear();
-        }
-
-        total=right.total;
-        listname=right.listname;
-        if(!right.list.empty()  && !right.observers.empty()){
-            list.resize(right.list.size());
-
-            for (const auto itr0:right.list) {
-                list.push_back(itr0);
-            }
-
-
-            for(const auto &itr: right.observers){
-                observers.push_back(itr);
-            }
-        }
-    }
-    return *this;
 }
 
 std::string ShoppingList::getListName(){

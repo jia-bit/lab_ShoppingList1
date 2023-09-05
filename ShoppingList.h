@@ -14,16 +14,14 @@
 
 class ShoppingList : public Subject{
 public:
-    ShoppingList(const std::string& n);
+    explicit ShoppingList(const std::string& n);
     ShoppingList();
     ~ShoppingList() override;
 
-    ShoppingList(const ShoppingList& orig);
     void notify() override;
     void subscribe(Observer *o) override;
     void unsubscribe(Observer *o) override;
 
-    ShoppingList& operator=(const ShoppingList& right);
     void insertObject(const Object& value);
     void removeObject(int pos);
     void printList();
