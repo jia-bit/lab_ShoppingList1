@@ -20,14 +20,15 @@ TEST(ShoppingList, TestQuantityTotal){
     ASSERT_NEAR(17.01, list.getTotal(), 0.01);
     ASSERT_EQ(0, list.getnumberBoughtObject());
 
+    list.setObjectbeBought(0);
+    ASSERT_EQ(1, list.getnumberBoughtObject()); //ob1 è stato comprato
+
     list.modifyObjectQuantity(5, 0);
     ASSERT_NEAR(9.66, list.getTotal(), 0.01);
 
-    list.removeObject(0);
+    list.removeObject(0); //ob1 è stato cancellato
     ASSERT_NEAR(2.31, list.getTotal(), 0.01);
-
-    list.setObjectbeBought(0);
-    ASSERT_EQ(1, list.getnumberBoughtObject());
+    ASSERT_EQ(0, list.getnumberBoughtObject());
 }
 
 
