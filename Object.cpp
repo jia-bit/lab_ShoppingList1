@@ -52,7 +52,7 @@ void Object::setbeBought(bool bebought) {
     this->beBought=bebought;
 }
 
-bool Object::getbeBought() const {
+bool Object::isBought() const {
     return beBought;
 }
 

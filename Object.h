@@ -21,7 +21,7 @@ public:
     void setQuantity(const int& q);
     void setUnitPrice(const float& uq);
     void setbeBought(bool bebought);
-    bool getbeBought() const;
+    bool isBought() const;
 private:
     std::string Name;
     std::string Type;

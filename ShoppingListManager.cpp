@@ -29,7 +29,7 @@ void ShoppingListManager::insertShoppinglist(ShoppingList *newlist) {
     bool listExists = false;
     if(getListNumber() != 0) {
         for (auto &itr: lists) {
-            if (itr->getListName() == newlist->getListName()) {
+            if (itr->getName() == newlist->getName()) {
                 listExists = true;
                 break;
             }
@@ -61,7 +61,7 @@ void ShoppingListManager::printLists() {
     if(getListNumber() != 0) {
         std::cout<<"My all lists: "<<std::endl;
         for (int i=0; i<lists.size();i++) {
-            std::cout << i << ". List Name: " << lists[i]->getListName() << "   -total: " << lists[i]->getTotal() << std::endl;
+            std::cout << i << ". List Name: " << lists[i]->getName() << "   -total: " << lists[i]->getTotal() << std::endl;
         }
     }else{
         std::cout<<"non c' e' nessuna lista"<<std::endl;
@@ -79,7 +79,7 @@ void ShoppingListManager::setListNumber(int n) {
 
 void ShoppingListManager::showOneList(const std::string &name) {
     for(auto &itr:lists) {
-        if (itr->getListName() == name) {
+        if (itr->getName() == name) {
             itr->printList();
             break;
         }
@@ -90,13 +90,13 @@ void ShoppingListManager::showOneList(const std::string &name) {
 bool ShoppingListManager::renameList(const std::string &newname, const std::string& oldname) {
     bool oldNameFound = false;
     for (auto &itr: lists) {
-        if (itr->getListName() == oldname) {
+        if (itr->getName() == oldname) {
             oldNameFound=true;
-            if (itr->getListName() == newname) {
+            if (itr->getName() == newname) {
                 std::cout << "nome gia' esistente!" << std::endl;
                 return false;
             }else {
-                itr->renameListName(newname);
+                itr->renameList(newname);
                 std::cout << "rinominata!" << std::endl;
                 return true;
             }
@@ -113,7 +113,7 @@ bool ShoppingListManager::renameList(const std::string &newname, const std::stri
 
 void ShoppingListManager::insertnewObject(const std::string &name,const Object& obj) {
     for(auto &itr:lists){
-        if(itr->getListName() == name){
+        if(itr->getName() == name){
             itr->insertObject(obj);
         }else{
             std::cout<<"lista non riconosciuta"<<std::endl;
@@ -123,7 +123,7 @@ void ShoppingListManager::insertnewObject(const std::string &name,const Object& 
 
 void ShoppingListManager::removeObject(const std::string& name, int pos) {
     for(auto &itr:lists) {
-        if (itr->getListName() == name) {
+        if (itr->getName() == name) {
             itr->removeObject(pos);
         }
     }
@@ -131,7 +131,7 @@ void ShoppingListManager::removeObject(const std::string& name, int pos) {
 
 void ShoppingListManager::modifyObjectQuantity(const std::string& name, int goalq, int pos) {
     for(auto &itr:lists) {
-        if (itr->getListName() == name) {
+        if (itr->getName() == name) {
             itr->modifyObjectQuantity(goalq, pos);
         }
     }
@@ -139,7 +139,7 @@ void ShoppingListManager::modifyObjectQuantity(const std::string& name, int goal
 
 bool ShoppingListManager::findList(const std::string &name) {
     for(const auto itr:lists){
-        if(itr->getListName() == name){
+        if(itr->getName() == name){
             return true;
         }
     }
@@ -149,9 +149,9 @@ bool ShoppingListManager::findList(const std::string &name) {
 void ShoppingListManager::copyList(const std::string &name) {
     std::string Newname=name+"copied";
     for(auto &itr:lists){
-        if(itr->getListName() == name){
+        if(itr->getName() == name){
             ShoppingList copylist(*itr->getList());
-            copylist.renameListName(Newname);
+            copylist.renameList(Newname);
             insertShoppinglist(new ShoppingList(copylist));;
             notify();
             std::cout<<"lista copiata!"<<std::endl;
@@ -162,7 +162,7 @@ void ShoppingListManager::copyList(const std::string &name) {
 
 void ShoppingListManager::setObjectbeBought(int pos, const std::string &name) {
     for(auto &itr:lists){
-        if(itr->getListName()==name){
+        if(itr->getName() == name){
             itr->setObjectbeBought(pos);
         }
     }

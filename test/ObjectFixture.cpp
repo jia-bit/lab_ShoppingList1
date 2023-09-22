@@ -20,5 +20,5 @@ TEST_F(ObjectSuite, TestPrice){
     ASSERT_EQ(10, ob.getQuantity());
     ob.setPrice();
     ASSERT_EQ(60, ob.getPrice());
-    ASSERT_TRUE(ob.getbeBought());
+    ASSERT_TRUE(ob.isBought());
 }

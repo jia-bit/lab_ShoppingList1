@@ -24,14 +24,14 @@ public:
 
     void insertObject(const Object& value);
     void removeObject(int pos);
-    void printList();
+    void printList() const;
     float getTotal()const;
-    std::string getListName();
-    void renameListName(const std::string& name);
+    std::string getName() const;
+    void renameList(const std::string& name);
     void calculateTotal();
     void modifyObjectQuantity(int goalq, int pos);
     const ShoppingList* getList()const;
-    int getnumberBoughtObject();
+    int getnumberBought() const;
     void setObjectbeBought(int pos);
 private:
     std::list<Observer*> observers;

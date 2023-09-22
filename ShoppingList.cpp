@@ -34,8 +34,8 @@ float ShoppingList::getTotal() const {
 void ShoppingList::calculateTotal() {
     float result=0;
     for(auto &itr:list){
-        if(!itr.getbeBought()) {
-            result = static_cast<float>(itr.getUnitPrice() * itr.getQuantity() + result);
+        if(!itr.isBought()) {
+            result = itr.getUnitPrice() * itr.getQuantity() + result;
         }
     }
     result = std::round(result * 100) / 100;
@@ -57,7 +57,7 @@ void ShoppingList::modifyObjectQuantity(int goalq, int pos) {
     }
 }
 
-void ShoppingList::printList() {
+void ShoppingList::printList() const {
     for(int i=0; i<list.size(); i++){
         std::cout << i << ". oggetto: " << list[i].getName() << "    -tipo: " << list[i].getType()
                   << "   -prezzo unitario: " << list[i].getUnitPrice() << "  - quantita': "
@@ -87,7 +87,7 @@ void ShoppingList::removeObject(int pos) {
 
 }
 
-std::string ShoppingList::getListName(){
+std::string ShoppingList::getName() const{
     return this->listname;
 }
 
@@ -95,7 +95,7 @@ ShoppingList::~ShoppingList() {
     list.clear();
 }
 
-void ShoppingList::renameListName(const std::string &name) {
+void ShoppingList::renameList(const std::string &name) {
     this->listname=name;
 }
 
@@ -103,10 +103,10 @@ const ShoppingList *ShoppingList::getList() const {
     return this;
 }
 
-int ShoppingList::getnumberBoughtObject() {
+int ShoppingList::getnumberBought() const {
     int count=0;
     for(auto &itr:list){
-        if(itr.getbeBought()){
+        if(itr.isBought()){
             count++;
         }
     }
@@ -115,7 +115,7 @@ int ShoppingList::getnumberBoughtObject() {
 
 void ShoppingList::setObjectbeBought(int pos) {
     if(pos>=0 && pos<list.size()) {
-        if(!list[pos].getbeBought()){
+        if(!list[pos].isBought()){
             list[pos].setbeBought(true);
         }else{
             list[pos].setbeBought(false);

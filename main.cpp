@@ -50,7 +50,7 @@ int main() {
                             newlist->insertObject(*obj);
                             newlist->calculateTotal();
                             newlist->printList();
-                            std::cout << "totale di " << newlist->getListName() << " : " << newlist->getTotal() << std::endl;
+                            std::cout << "totale di " << newlist->getName() << " : " << newlist->getTotal() << std::endl;
                             goto loop;
                         case 2:
                             std::cout<<"inserisci posizione di oggetto da cancellare: "<<std::endl;
@@ -58,7 +58,7 @@ int main() {
                             manager.removeObject(newlistName, pos);
                             newlist->calculateTotal();
                             newlist->printList();
-                            std::cout << "total di " << newlist->getListName() << " : " << newlist->getTotal() << std::endl;
+                            std::cout << "total di " << newlist->getName() << " : " << newlist->getTotal() << std::endl;
                             goto loop;
                         case 3:
                             std::cout<<"inserisci nuova quantita': "<<std::endl;
